@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import NoteInput from './components/NoteInput';
 
+
 function App() {
 
  return (
@@ -18,6 +19,7 @@ function App() {
 
         <Route path="/" element={<Home />} />
         <Route path="/NoteInput" element={<NoteInput />} />
+       
 
 
       </Routes>
