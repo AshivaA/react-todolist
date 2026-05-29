@@ -37,26 +37,59 @@ it('should check that user can write in input', async () => {
 // Test 3: check if Add button can add new note.
 it('should add a new note when Add button is clicked', async() => {
 
-      // create fake user inside the test
+      // this part is the same as Test 2: ===========
     const user = userEvent.setup();
     render(<App />);
-
-      // first find the input 
     const input = screen.getByRole('textbox');
-    
-
-      // second check if the input is writable.
     await user.type(input, 'buy milk');
-
-     // third find Add button and click it.  
+     // ==============================================
+     // find Add button and click it.  
     await user.click(
         screen.getByRole( 'button', {name: 'Add'})
     )
-    // forth check result, if new text appears after clicking Add button.
+    // check result, if new text appears after clicking Add button.
     // toBeDefined() checks that the new li element was found.
+    // getBy...(), check that something should exist.
     expect(screen.getByText('buy milk')).toBeDefined();
 });
 
 
+// Test 4: it should check if user can edit a note.
+it('should edit an existing note', async() => {
+
+    // this part is the same as Test 3: ===========
+    const user = userEvent.setup();
+    render(<App />);
+    const input = screen.getByRole('textbox');
+    await user.type(input, 'buy milk');  
+    await user.click(
+        screen.getByRole( 'button', {name: 'Add'})
+    )
+    // =============================================
+     // find Edit button and click it.  
+    await user.click(
+        screen.getByRole( 'button', {name: 'Edit'})
+    )
+
+    // clear old note
+    await user.clear(input);
+
+    // type new note
+    await user.type(input, 'hello');
+
+    // save edited note
+    await user.click(
+        screen.getByRole( 'button', {name: 'Save'})
+    )
+
+  // check that the old note is disappeared.
+  // queryBy...(), checking that something disappeared.
+  // toBeNull() use with queryBy...(), because queryBy...() return null when it can not find something.
+  expect(screen.queryByText('buy milk')).toBeNull();
+
+  // new text should replace the old text.
+  expect(screen.getByText('hello')).toBeDefined();
+
+});
 
 
