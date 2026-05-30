@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import { expect, it } from 'vitest';
-import { input } from '@testing-library/user-event/dist/cjs/event/input.js';
+// import { input } from '@testing-library/user-event/dist/cjs/event/input.js';
 
 
 // Test 1: Write a test to check if (App.jsx) component renders.
@@ -19,16 +19,17 @@ it('should check that user can write in input', async () => {
     render(<App />);
 
     // first find the input 
-    const input = screen.getByRole('textbox');
+    // getByAll...(), ALWAYS return an array. so we use index to select the exact element.
+    const input = screen.getAllByRole('textbox')[0];
     console.log(input.value);
 
      // then check if the input is writable or not.
-     //(user.type means (where you type, what you type) 
-    //  important: you are Not typing in the browser'buy milk' this line type it automatically because of the fake user.
+     //  (user.type means (where you type, what you type) 
+    // important: you are Not typing in the browser'buy milk' this line type it automatically by the fake user.
     await user.type(input, 'buy milk');
     
 
-     // finally check result(I expect the input’s value to equal 'buy milk' inside the test.)
+     // finally check result(I expect the input’s value to be equal 'buy milk' inside the test.)
      // (toBe() checks if it is exactly equal with, what you type in user.type.)
     expect(input.value).toBe('buy milk');
     
@@ -40,13 +41,13 @@ it('should add a new note when Add button is clicked', async() => {
       // this part is the same as Test 2: ===========
     const user = userEvent.setup();
     render(<App />);
-    const input = screen.getByRole('textbox');
+    const input = screen.getAllByRole('textbox')[0];
     await user.type(input, 'buy milk');
      // ==============================================
+
      // find Add button and click it.  
-    await user.click(
-        screen.getByRole( 'button', {name: 'Add'})
-    )
+    await user.click( screen.getByRole( 'button', {name: 'Add'}))
+
     // check result, if new text appears after clicking Add button.
     // toBeDefined() checks that the new li element was found.
     // getBy...(), check that something should exist.
@@ -66,28 +67,26 @@ it('should edit an existing note', async() => {
         screen.getByRole( 'button', {name: 'Add'})
     )
     // =============================================
-     // find Edit button and click it.  
-    await user.click(
-        screen.getByRole( 'button', {name: 'Edit'})
-    )
+    // find Edit button and click it.  
+    await user.click(screen.getByRole( 'button', {name: 'Edit'}) )
 
+    // find edit input
+    // getByAll...(), ALWAYS return an array. so we use index to select the exact element.
+    const editInput = screen.getAllByRole('textbox')[1];
     // clear old note
-    await user.clear(input);
-
-    // type new note
-    await user.type(input, 'hello');
+    await user.clear(editInput);
+    //  type new note
+    await user.type(editInput, 'hello');
 
     // save edited note
-    await user.click(
-        screen.getByRole( 'button', {name: 'Save'})
-    )
+    await user.click(screen.getByRole( 'button', {name: 'Save'}) )
 
-  // check that the old note is disappeared.
-  // queryBy...(), checking that something disappeared.
-  // toBeNull() use with queryBy...(), because queryBy...() return null when it can not find something.
+    // check that the old note is disappeared.
+    // queryBy...(), checking that something disappeared.
+    // toBeNull() use with queryBy...(), because queryBy...() return null when it can not find something.
   expect(screen.queryByText('buy milk')).toBeNull();
 
-  // new text should replace the old text.
+   // new text should replace the old text.
   expect(screen.getByText('hello')).toBeDefined();
 
 });
