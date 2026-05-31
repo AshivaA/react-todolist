@@ -1,5 +1,5 @@
 // import React from 'react'
-import { input } from '@testing-library/user-event/dist/cjs/event/input.js';
+// import { input } from '@testing-library/user-event/dist/cjs/event/input.js';
 import React, { useState } from 'react'
 
 
@@ -44,6 +44,23 @@ const SaveEditedNote = () =>{
   setEditInputBox('');
 }
 
+// passed Test 5--------------------------------------------
+const [deleteNote, setDeleteNote]= useState([]);
+const DeleteText= (selectedNoteIndex) => { 
+  // save deleted notes inside deleteNote state based on selected note index.
+  setDeleteNote([ ...deleteNote,
+    addNotes[selectedNoteIndex]
+  ]);
+
+  // remove selected note from addNotes
+  const updateAddText = addNotes.filter((note, index) => index !== selectedNoteIndex);
+  // update addNotes state
+  setAddNotes(updateAddText);
+
+}
+
+
+
 
 
 
@@ -68,6 +85,8 @@ const SaveEditedNote = () =>{
 
  <button onClick={()=> EditText(index)}>Edit</button>
  <button onClick={SaveEditedNote}>Save</button>
+ <button onClick={()=> DeleteText(index)}>Delete</button>
+
 
  </li>
 ))}

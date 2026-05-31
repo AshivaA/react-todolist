@@ -46,7 +46,7 @@ it('should add a new note when Add button is clicked', async() => {
      // ==============================================
 
      // find Add button and click it.  
-    await user.click( screen.getByRole( 'button', {name: 'Add'}))
+    await user.click( screen.getByRole( 'button', {name: 'Add'}));
 
     // check result, if new text appears after clicking Add button.
     // toBeDefined() checks that the new li element was found.
@@ -63,12 +63,10 @@ it('should edit an existing note', async() => {
     render(<App />);
     const input = screen.getByRole('textbox');
     await user.type(input, 'buy milk');  
-    await user.click(
-        screen.getByRole( 'button', {name: 'Add'})
-    )
+    await user.click( screen.getByRole( 'button', {name: 'Add'}));
     // =============================================
     // find Edit button and click it.  
-    await user.click(screen.getByRole( 'button', {name: 'Edit'}) )
+    await user.click(screen.getByRole( 'button', {name: 'Edit'}) );
 
     // find edit input
     // getByAll...(), ALWAYS return an array. so we use index to select the exact element.
@@ -79,7 +77,7 @@ it('should edit an existing note', async() => {
     await user.type(editInput, 'hello');
 
     // save edited note
-    await user.click(screen.getByRole( 'button', {name: 'Save'}) )
+    await user.click(screen.getByRole( 'button', {name: 'Save'}) );
 
     // check that the old note is disappeared.
     // queryBy...(), checking that something disappeared.
@@ -90,5 +88,23 @@ it('should edit an existing note', async() => {
   expect(screen.getByText('hello')).toBeDefined();
 
 });
+
+
+// Test 5: it should delete note after pressing delete button.
+it('should delete note after pressing delete button', async() => {
+
+    // this part is the same as Test 3: ===========
+    const user = userEvent.setup();
+    render(<App />);
+    const input = screen.getByRole('textbox');
+    await user.type(input, 'buy milk');  
+    await user.click( screen.getByRole( 'button', {name: 'Add'}));
+    // =============================================
+    // find Delete button and click it.  
+    await user.click(screen.getByRole( 'button', {name: 'Delete'}) );
+    // check if note was deleted
+    expect(screen.queryByText('buy milk')).toBeNull();
+});
+
 
 
