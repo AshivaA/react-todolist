@@ -78,13 +78,18 @@ const DeleteText= (selectedNoteIndex) => {
 <ul>
 {addNotes.map((addNote, index)=>(
 
-// <li> {if condition? then true result : else false result} </li>
+// <li> {if condition is true? then show first result : else show second result} </li>
  <li key={index} className='note-box'>
-  { editNotesIndex ===index ?(<input value={EditInputBox} onChange={CreateEditInputBox} />) :( addNote)}
+  { editNotesIndex === index ? (<input value={EditInputBox} onChange={CreateEditInputBox} />) :( addNote)}
 
 
- <button onClick={()=> EditText(index)}>Edit</button>
- <button onClick={SaveEditedNote}>Save</button>
+ { editNotesIndex === index ? ( <button onClick={SaveEditedNote}>Save</button>) 
+ :( <button onClick={()=> EditText(index)}>Edit</button>)}
+
+
+
+ {/* <button onClick={()=> EditText(index)}>Edit</button> */}
+ {/* <button onClick={SaveEditedNote}>Save</button> */}
  <button onClick={()=> DeleteText(index)}>Delete</button>
 
 
