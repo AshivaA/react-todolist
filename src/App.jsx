@@ -3,6 +3,7 @@ import './App.css'
 import NotesManager from './components/NotesManager';
 
 
+
 function App() {
 
  return (
@@ -12,6 +13,7 @@ function App() {
   <h1>this is home page</h1>
 
  <NotesManager />
+
 
 
 </div>
