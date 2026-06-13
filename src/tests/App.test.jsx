@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import { expect, it } from 'vitest';
+import { expect, it, beforeEach } from 'vitest';
 // import { input } from '@testing-library/user-event/dist/cjs/event/input.js';
+
+// the test expect only one note in every rendering, so we need to Clear localStorage before each test to prevent duplicate saved notes. this can make test errors.( beforeEach() is a built-in Vitest method to call a browser method(localStorage.clear()). )
+
+beforeEach(() => {
+  localStorage.clear();
+});
 
 
 // Test 1: Write a test to check if (App.jsx) component renders.
