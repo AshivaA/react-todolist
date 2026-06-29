@@ -84,23 +84,27 @@ const deletedNote = addNotes.find((note) =>
 
 
   return (
-    <div>
+    <div  className='div-content'>
 
-<ul>
+<ul className='ul-box'>
 {addNotes.map((addNote)=>(
 
 // <li> {if condition is true? then show first result : else show second result} </li>
- <li key={addNote.id} className='li-box'> 
-  { editNotesId === addNote.id ? (<input value={EditInputBox} onChange={CreateEditInputBox} />) :( addNote.text)}
+ <li key={addNote.id} className='li-box'>
+  
+  <div   className='li-input'>   
+  { editNotesId === addNote.id ? (<textarea className='edit-input' value={EditInputBox} onChange={CreateEditInputBox} />) :( addNote.text)}
+  </div>
+  
 
 
- { editNotesId === addNote.id ? ( <button onClick={SaveEditedNote}>Save</button>) 
- :( <button onClick={()=> EditText(addNote.id)}>Edit</button>)}
+ { editNotesId === addNote.id ? ( <button  className='save-btn' onClick={SaveEditedNote}>Save</button>) 
+ :( <button  className='edit-btn'  onClick={()=> EditText(addNote.id)}>Edit</button>)}
 
 
 
 
- <button onClick={()=> DeleteText(addNote.id)}>Delete</button>
+ <button  className='delete-btn'  onClick={()=> DeleteText(addNote.id)}>Delete</button>
 
  </li>
 ))}

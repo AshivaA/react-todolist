@@ -34,15 +34,16 @@ console.log('-------------------------');
 
 
   return (
-    <div>
+    <div  className='div-content'>
   
-<input 
+  {/* we changed input to textarea ,because the text automatically goes to the next line.*/}
+<textarea  className='note-input'
  value={note}
   onChange={NoteChange}
   placeholder=' write your note here... '
 />
 
-<button onClick={AddText}>Add</button>
+<button  className='add-btn' onClick={AddText}>Add</button>
 
 
     </div>
