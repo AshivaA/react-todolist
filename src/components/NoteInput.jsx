@@ -16,11 +16,19 @@ const NoteChange = (event) => {setNote(event.target.value)};
 // when the user click "Add" the note will add with specific id instead index.
 // crypto.randomUUID(), is a global method to generate unique id for arrays items instead of index without install any packages to use.
 
+// .trim(), removes extra spaces from beginning and end of the text.
+// if ( note.trim() === ''){return;} stop adding empty text or only spaces. the function immediately stop because of using return in if statement.so in this condition noting run after if statement.
+
+
 const AddText = () =>{
+
+  if (note.trim()=== '') {
+    return;
+  }
   
   const noteId ={
   id: crypto.randomUUID(),
-  text: note,
+  text: note.trim(),
 } 
 console.log('noteId: Returns the object:{ id, text } before it is added to state.');
 console.log(noteId);
