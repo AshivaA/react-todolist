@@ -25,6 +25,7 @@ Just write your note,
  -click **Edit** to update a note and **Save** it.  
  -click **Delete** to remove a note.  
 
+<img width="1257" height="399" alt="Image" src="https://github.com/user-attachments/assets/a4df66cd-82a6-43e4-a553-812a4225edd8" />
 
 ## Link to GitHub repository
 [GitHub Repo](https://github.com/AshivaA/react-todolist.git)
