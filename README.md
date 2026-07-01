@@ -1,16 +1,36 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+read me
+# React Todo list
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Description
 
-## React Compiler
+A modern and responsive React Todo List application build with React, Vite,and Tailwind Css. It allows user to create, edit and delete notes. it also include automated testing with React Testing Library and automated deployment using Netlify (CI/CD).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+-Add new notes  
+-Edit existing notes and save it  
+-Delete notes  
+-Responsive design with a modern UI built using Tailwind CSS  
+-Automated testing with React Testing Library and Vitest  
+-Automatic deployment with Netlify (CI/CD)   
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+## Usage
+
+Just write your note,  
+ -click **Add** to save it.  
+ -click **Edit** to update a note and **Save** it.  
+ -click **Delete** to remove a note.  
+
+
+## Link to GitHub repository
+[GitHub Repo](https://github.com/AshivaA/react-todolist.git)
+
+
+## Link to Deployed application
+[Deployment Application](https://shiny-pastelito-5c172e.netlify.app/)
+
+
