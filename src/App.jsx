@@ -10,7 +10,7 @@ function App() {
 
 <div>
 
-  <h1>this is home page</h1>
+  <h1>write it, save it, never forget it</h1>
 
  <NotesManager />
 
